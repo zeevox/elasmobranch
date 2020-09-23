@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Tests
 {
-    public class Tests
+    public class Week2Tests
     {
         [Test]
         public void EqualityCheckTest()
