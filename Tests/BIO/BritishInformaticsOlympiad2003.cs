@@ -36,12 +36,12 @@ namespace Tests.BIO
         {
             var validNumbersWithSwappedDigits = new List<string>
             {
-                "2301014525", 
-                "0201314525", 
-                "3401012525", 
+                "2301014525",
+                "0201314525",
+                "3401012525",
                 "3200114525"
             };
-            
+
             Assert.AreEqual(validNumbersWithSwappedDigits, ValidNumbersWithSwappedDigits("3201014525"));
         }
     }

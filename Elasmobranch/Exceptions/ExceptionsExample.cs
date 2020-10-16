@@ -2,12 +2,12 @@
 using System.Net;
 using Syroot.Windows.IO;
 
-namespace Elasmobranch
+namespace Elasmobranch.Exceptions
 {
     public class Week6Exceptions
     {
         /// <summary>
-        /// Get the filename from the given URL
+        ///     Get the filename from the given URL
         /// </summary>
         /// <param name="uri"></param>
         /// <returns></returns>
@@ -17,7 +17,7 @@ namespace Elasmobranch
         }
 
         /// <summary>
-        /// Download a file from the internet given a URL
+        ///     Download a file from the internet given a URL
         /// </summary>
         /// <param name="url">The web file URL</param>
         public static bool DownloadFile(string url)
@@ -32,11 +32,8 @@ namespace Elasmobranch
             catch (WebException e)
             {
                 Console.WriteLine(e.GetBaseException().Message);
-                
-                if (e.Status == WebExceptionStatus.ProtocolError)
-                {
-                    Console.WriteLine($"Status code: {(int) e.Status}");
-                }
+
+                if (e.Status == WebExceptionStatus.ProtocolError) Console.WriteLine($"Status code: {(int) e.Status}");
 
                 return false;
             }

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Elasmobranch
+namespace Elasmobranch.TimedCodingTasks
 {
     /// <summary>
     ///     20 minutes to code an answer to Section B of AQA 7517 Specimen Paper

@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace Elasmobranch
+namespace Elasmobranch.Sorting
 {
-    public class Week4Lists<T> : List<T>
+    public class CustomList<T> : List<T>
     {
+        private Type _typeParameterType = typeof(T);
+
         /// <summary>
-        /// Get all the duplicated elements in this list
+        ///     Get all the duplicated elements in this list
         /// </summary>
         /// <returns>A list of the duplicated elements in this list</returns>
         public List<T> GetDuplicates()
@@ -15,7 +18,7 @@ namespace Elasmobranch
         }
 
         /// <summary>
-        /// Return whether the provided list is a subset of this one
+        ///     Return whether the provided list is a subset of this one
         /// </summary>
         /// <param name="subset">A second list which is potentially a subset of this one</param>
         /// <returns>Whether the provided list is a subset of this one</returns>
@@ -27,7 +30,5 @@ namespace Elasmobranch
             // Then negate the boolean for the purposes of this function
             return !subset.Except(this).Any();
         }
-        
-        // for an implementation of a QuickSort algorithm see Week3Sorting.cs
     }
 }

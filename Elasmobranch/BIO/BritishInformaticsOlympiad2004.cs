@@ -11,13 +11,13 @@ namespace Elasmobranch.BIO
             tuns -= 7;
             uinals -= 16;
             kins -= 3;
-            
+
             return new DateTime(2000, 1, 1)
-                .AddDays(baktuns * 20 * 20 * 18 * 20 + 
-                         katuns       * 20 * 18 * 20 + 
-                         tuns              * 18 * 20 + 
-                         uinals                 * 20 +
-                         kins                         );
+                .AddDays(baktuns * 20 * 20 * 18 * 20 +
+                         katuns * 20 * 18 * 20 +
+                         tuns * 18 * 20 +
+                         uinals * 20 +
+                         kins);
         }
     }
 }

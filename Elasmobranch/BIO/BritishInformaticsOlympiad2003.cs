@@ -81,9 +81,11 @@ namespace Elasmobranch.BIO
         }
 
         /// <summary>
-        /// From the BIO 2003, question 1(c)
-        /// A valid ISBN has two of its digits swapped and the resulting code is 3201014525. What are the possible values of the valid ISBN?
-        /// This is small function that, given an ISBN, returns valid ISBNs that have two of the digits in the original one swapped
+        ///     From the BIO 2003, question 1(c)
+        ///     A valid ISBN has two of its digits swapped and the resulting code is 3201014525. What are the possible values of
+        ///     the valid ISBN?
+        ///     This is small function that, given an ISBN, returns valid ISBNs that have two of the digits in the original one
+        ///     swapped
         /// </summary>
         /// <param name="isbn">The given ISBN number that we are analysing</param>
         /// <returns>A list of valid ISBN numbers</returns>

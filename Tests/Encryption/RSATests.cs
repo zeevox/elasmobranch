@@ -1,64 +1,19 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
+using Elasmobranch.Encryption;
 using NUnit.Framework;
-using static Elasmobranch.Week5Encryption;
 
-namespace Tests
+namespace Tests.Encryption
 {
-    public class Week5Encryption
+    public class RSATests
     {
-        [Test]
-        // Encryption
-        [TestCase("bcde", "abcd", 1, false)]
-        [TestCase("cdef-ghij", "abcd-efgh", 2, false)]
-        [TestCase("cdefghij", "abcd-efgh", 2, true)]
-        [TestCase("krzgb", "howdy", 3)]
-        [TestCase("abcdabcdddeebcadd", "abcdabcdddeebcadd", 26)]
-        [TestCase("Wkhuh'v-d-vwdupdq-zdlwlqj-lq-wkh-vnb", "There's-a-starman-waiting-in-the-sky", 3)]
-        [TestCase("Wkhuhvdvwdupdqzdlwlqjlqwkhvnb", "There's-a-starman-waiting-in-the-sky", 3, true)]
-        [TestCase("okffng-Qwvb", "middle-Outz", 2)]
-        [TestCase("okffngQwvb", "middle-Outz", 2, true)]
-        public void CaesarCipherTest(string expected, string plaintext, int rot, bool squash = false)
-        {
-            Assert.AreEqual(expected, CaesarCipher.Encipher(plaintext, rot, squash));
-        }
-
-        [Test]
-        // Decryption
-        [TestCase("abcd","bcde",  1, false)]
-        [TestCase("abcd-efgh","cdef-ghij",  2, false)]
-        [TestCase("abcdefgh","cdefghij",  2, true)]
-        [TestCase("howdy", "krzgb", 3, false)]
-        [TestCase("abcdabcdddeebcadd","abcdabcdddeebcadd",  26, false)]
-        [TestCase("There's-a-starman-waiting-in-the-sky","Wkhuh'v-d-vwdupdq-zdlwlqj-lq-wkh-vnb",  3, false)]
-        [TestCase("Theresastarmanwaitinginthesky", "Wkhuhvdvwdupdqzdlwlqjlqwkhvnb", 3, true)]
-        [TestCase("middle-Outz", "okffng-Qwvb", 2, false)]
-        [TestCase("middleOutz","okffngQwvb",  2, true)]
-        public void CaesarDecipherTest(string expected, string ciphered, int rot, bool squash = false)
-        {
-            Assert.AreEqual(expected, CaesarCipher.Decipher(ciphered, rot, squash));
-        }
-
-        [Test]
-        [TestCase("alpvsuhypn", "helloworld", "thekey")]
-        [TestCase("ashyspvftgocsw", "he's gone bananas", "topsecret")]
-        [TestCase("Vyc fnqkm spdpv nqo hjfxa qmcg mpqtkctg tibp bdza.", "The quick brown fox jumps over thirteen lazy dogs.", "cryptii", false)]
-        [TestCase("Vycfnqkmspdpvnqohjfxaqmcgmpqtkctgtibpbdza", "The quick brown fox jumps over thirteen lazy dogs.", "cryptii")]
-        [TestCase("Bggafyqrh xs mzg srpar xora sg ezuooqso, xlqfz qwo'x ezm ric b fiq gcwymh fq owti us jxm.", "According to all known laws of aviation, there isn't any way a bee should be able to fly.", "beemovie", false)]
-        [TestCase("Bggafyqrhxsmzgsrparxorasgezuooqsoxlqfzqwoxezmricbfiqgcwymhfqowtiusjxm", "According to all known laws of aviation, there isn't any way a bee should be able to fly.", "beemovie")]
-        [TestCase("\"Vx's ezr mfrm\" – jr grzpb!", "\"It's not true\" – he cried!", "nEaRlYtOXiC", false)]
-        [TestCase("Vxsezrmfrmjrgrzpb", "\"It's not true\" – he cried!", "nEaRlYtOXiC")]
-        public void VigenereCipherTest(string expected, string plaintext, string keyword, bool squash = true)
-        {
-            Assert.AreEqual(expected, VigenereCipher.Encipher(plaintext, keyword, squash));
-        }
-
         [Test]
         public void PrimeGenerationTest()
         {
-            Assert.AreEqual(new List<BigInteger>{2, 3, 5, 7, 11, 13, 17, 19}, RivestShamirAdleman.GenerateListOfPrimes(20));
+            Assert.AreEqual(new List<BigInteger> {2, 3, 5, 7, 11, 13, 17, 19},
+                RivestShamirAdleman.GenerateListOfPrimes(20));
         }
 
         [Test]
@@ -80,11 +35,13 @@ namespace Tests
 
         [Test]
         [TestCase("780", "60", "52")]
-        [TestCase("41484157651764614525905399263631111992263435437186260", "234516789234023485693020129", "176892058718950472893785940")]
-        [TestCase("443593541011902763984944550799004089258248037004507648321189937329", "36594652830916364940473625749407", "448507083624364748494746353648484939")]
+        [TestCase("41484157651764614525905399263631111992263435437186260", "234516789234023485693020129",
+            "176892058718950472893785940")]
+        [TestCase("443593541011902763984944550799004089258248037004507648321189937329",
+            "36594652830916364940473625749407", "448507083624364748494746353648484939")]
         public void LeastCommonMultipleTest(string expected, string a, string b)
         {
-            Assert.AreEqual(BigInteger.Parse(expected), 
+            Assert.AreEqual(BigInteger.Parse(expected),
                 RivestShamirAdleman.LeastCommonMultiple(BigInteger.Parse(a), BigInteger.Parse(b)));
         }
 
@@ -98,7 +55,7 @@ namespace Tests
         [TestCase("45180085378", "31", "73714876143")]
         public void ModularMultiplicativeInverseTest(string expected, string a, string m)
         {
-            Assert.AreEqual(BigInteger.Parse(expected), 
+            Assert.AreEqual(BigInteger.Parse(expected),
                 RivestShamirAdleman.ModularMultiplicativeInverse(BigInteger.Parse(a), BigInteger.Parse(m)));
         }
 
@@ -110,7 +67,7 @@ namespace Tests
             var rsaKey = new RivestShamirAdleman(-1, publicKey, commonKey);
             Assert.AreEqual(new BigInteger(encrypted), rsaKey.Encrypt(message));
         }
-        
+
         [Test]
         [TestCase(65, 413, 3233, 2790)]
         public void RSANumberDecryptionTest(int message, int privateKey, int commonKey, int encrypted)
@@ -156,7 +113,7 @@ namespace Tests
         private static string GenerateRandomNumberString(int length = 20)
         {
             var digits = new[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-            
+
             var stringBuilder = new StringBuilder();
             var random = new Random();
             for (var i = 0; i < length; i++)
@@ -171,14 +128,14 @@ namespace Tests
         public void RSATest()
         {
             var rsaKey = new RivestShamirAdleman();
-            
+
             TestContext.WriteLine(
                 $"privateKey: {rsaKey.PrivateKey}, publicKey: {rsaKey.PublicKey}, commonKey: {rsaKey.CommonKey}");
 
             var encrypted = rsaKey.Encrypt("topSecret123");
             TestContext.WriteLine(encrypted);
             Assert.AreEqual("topSecret123", rsaKey.Decrypt(encrypted));
-            
+
             //Assert.AreEqual("topSecret123", rsaKey.PrivateDecrypt(rsaKey.PublicEncrypt("topSecret123")));
         }
     }

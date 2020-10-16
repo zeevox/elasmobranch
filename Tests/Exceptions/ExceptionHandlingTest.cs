@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
-using static Elasmobranch.Week6Exceptions;
+using static Elasmobranch.Exceptions.Week6Exceptions;
 
-namespace Tests
+namespace Tests.Exceptions
 {
-    public class Week6Exceptions
+    public class ExceptionHandlingTest
     {
         [Test]
         [TestCase("https://zeevox.net/images/avatar_122px.webp")]

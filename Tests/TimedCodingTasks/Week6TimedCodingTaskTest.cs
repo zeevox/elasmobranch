@@ -1,7 +1,7 @@
-﻿using Elasmobranch;
+﻿using Elasmobranch.TimedCodingTasks;
 using NUnit.Framework;
 
-namespace Tests
+namespace Tests.TimedCodingTasks
 {
     public class Week6TimedCodingTaskTest
     {
