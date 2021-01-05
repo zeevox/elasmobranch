@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using static Elasmobranch.BIO.BritishInformaticsOlympiad2004;
 

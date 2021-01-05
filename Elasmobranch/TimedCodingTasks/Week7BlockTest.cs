@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Elasmobranch.TimedCodingTasks
 {
-    public class Week7BlockTest
+    public static class Week7BlockTest
     {
         /// <summary>
         ///     Count the number of occurrences of an integer in a given list of integers

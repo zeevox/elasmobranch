@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Text;
 
 namespace Elasmobranch.Encryption
@@ -19,7 +19,7 @@ namespace Elasmobranch.Encryption
         {
             // convert the key into a char array, chars can also be used as numbers
             // uppercase so that they are homogeneously same case so we do not have to consider cases (lower/upper)
-            var keywordShifts = keyword.ToUpper().ToCharArray();
+            var keywordShifts = keyword.ToUpperInvariant().ToCharArray();
 
             // Strip punctuation at the very start (by default)
             if (squash) plaintext = new string(plaintext.Where(char.IsLetter).ToArray());

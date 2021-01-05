@@ -1,4 +1,4 @@
-﻿using Elasmobranch.Stacks;
+using Elasmobranch.Stacks;
 using NUnit.Framework;
 
 namespace Tests.Stacks

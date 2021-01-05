@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Text;
 
 namespace Elasmobranch.Encryption
@@ -9,7 +9,7 @@ namespace Elasmobranch.Encryption
     public static class CaesarCipher
     {
         private const string AsciiLowercase = "abcdefghijklmnopqrstuvwxyz";
-        private static readonly string AsciiUppercase = AsciiLowercase.ToUpper();
+        private static readonly string AsciiUppercase = AsciiLowercase.ToUpperInvariant();
 
         /// <summary>
         ///     Apply the Caesar cipher to a string of text

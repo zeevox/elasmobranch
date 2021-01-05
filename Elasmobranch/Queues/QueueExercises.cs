@@ -35,18 +35,13 @@ namespace Elasmobranch.Queues
             var value = -1;
             for (var i = 2; i <= n; i++)
             {
-                switch (i % 3)
+                value = (i % 3) switch
                 {
-                    case 2:
-                        value = queue.Peek() + 1;
-                        break;
-                    case 0:
-                        value = queue.Peek() * 2 + 1;
-                        break;
-                    case 1:
-                        value = queue.Dequeue() + 2;
-                        break;
-                }
+                    2 => queue.Peek() + 1,
+                    0 => queue.Peek() * 2 + 1,
+                    1 => queue.Dequeue() + 2,
+                    _ => value
+                };
 
                 queue.Enqueue(value);
                 result[i - 1] = value;

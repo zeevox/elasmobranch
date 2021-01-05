@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 
 namespace Elasmobranch.BIO
 {
-    public class BritishInformaticsOlympiad2004
+    public static class BritishInformaticsOlympiad2004
     {
         public static DateTime MayanToGregorian(int baktuns, int katuns, int tuns, int uinals, int kins)
         {

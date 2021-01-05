@@ -1,4 +1,4 @@
-﻿using Elasmobranch.Encryption;
+using Elasmobranch.Encryption;
 using NUnit.Framework;
 
 namespace Tests.Encryption

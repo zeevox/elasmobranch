@@ -9,9 +9,9 @@ namespace Elasmobranch.Encryption
 {
     public class RivestShamirAdleman
     {
-        public readonly BigInteger CommonKey;
-        public readonly BigInteger PrivateKey;
-        public readonly BigInteger PublicKey;
+        public BigInteger CommonKey { get; }
+        public BigInteger PrivateKey { get; }
+        public BigInteger PublicKey { get; }
 
         /// <summary>
         ///     Generate an RSA Key Pair

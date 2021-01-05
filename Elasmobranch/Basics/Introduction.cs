@@ -1,5 +1,8 @@
-﻿using System;
+using System;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Runtime.InteropServices;
 
 namespace Elasmobranch.Basics
 {
@@ -36,18 +39,11 @@ namespace Elasmobranch.Basics
 
         public static double InputNumber(string message, int defaultValue = 0)
         {
-            Console.Write(message);
-            var input = Console.ReadLine();
-            try
-            {
-                return input == "" ? defaultValue : Convert.ToInt32(input);
-            }
-            catch (SystemException)
-            {
-                Console.WriteLine("You're a bad person, just to let you know.");
-                Console.WriteLine("I didn't like your input so I'm using the default value. :P");
-                return defaultValue;
-            }
+            if (int.TryParse(message, out var result)) return result;
+            
+            Console.WriteLine("You're a bad person, just to let you know.");
+            Console.WriteLine("I didn't like your input so I'm using the default value. :P");
+            return defaultValue;
         }
 
         public static double TenKMtimeToMetresPerSecond(double minutes, double seconds)

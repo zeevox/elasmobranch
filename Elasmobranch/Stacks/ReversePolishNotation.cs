@@ -1,4 +1,3 @@
-﻿using System.Collections.Generic;
 using System.Data;
 
 namespace Elasmobranch.Stacks

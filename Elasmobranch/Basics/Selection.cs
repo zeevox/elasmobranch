@@ -1,4 +1,6 @@
-﻿namespace Elasmobranch.Basics
+using System.Diagnostics;
+
+namespace Elasmobranch.Basics
 {
     public static class Selection
     {
@@ -28,14 +30,14 @@
             return p3;
         }
 
-        public static string DetermineQuadrant(double x, double y)
+        public static string DetermineQuadrant(int x, int y)
         {
-            if (x > 0 && y > 0) return "I";
-            if (x < 0 && y > 0) return "II";
-            if (x < 0 && y < 0) return "III";
-            if (x > 0 && y < 0) return "IV";
-            if (x == 0 && y == 0) return "origin";
-            return "one of the coordinates is zero or my logic is flawed";
+            return x > 0 && y > 0 ? "I" :
+                x < 0 && y > 0 ? "II" :
+                x < 0 && y < 0 ? "III" :
+                x > 0 && y < 0 ? "IV" : 
+                x == 0 && y == 0 ? "origin" :
+                "one of the coordinates is zero or my logic is flawed";
         }
 
         public static string ScoreToGrade(double quiz, double block, double final)

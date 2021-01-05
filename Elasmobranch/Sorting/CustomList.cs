@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,7 +6,7 @@ namespace Elasmobranch.Sorting
 {
     public class CustomList<T> : List<T>
     {
-        private Type _typeParameterType = typeof(T);
+        private readonly Type _typeParameterType = typeof(T);
 
         /// <summary>
         ///     Get all the duplicated elements in this list

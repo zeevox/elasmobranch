@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 
 namespace Elasmobranch.TimedCodingTasks
 {
@@ -6,7 +6,7 @@ namespace Elasmobranch.TimedCodingTasks
     ///     20 minutes to code an answer to Section B of AQA 7517 Specimen Paper
     ///     Available for viewing at https://store.aqa.org.uk/resources/computing/AQA-75171-SQP.PDF
     /// </summary>
-    public class Week6TimedCodingTask
+    public static class Week6TimedCodingTask
     {
         public static string ConvertDecimalToBinaryReversed(int dec)
         {

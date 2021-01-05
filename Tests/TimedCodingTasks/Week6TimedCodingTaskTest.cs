@@ -1,4 +1,4 @@
-﻿using Elasmobranch.TimedCodingTasks;
+using Elasmobranch.TimedCodingTasks;
 using NUnit.Framework;
 
 namespace Tests.TimedCodingTasks

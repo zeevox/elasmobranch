@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
@@ -123,21 +123,21 @@ namespace Tests.Encryption
 
             return stringBuilder.ToString();
         }
-
-        // TODO This will work once messages longer than a few digits are able to be successfully encrypted/decrypted
-        // [Test]
-        // public void RSATest()
-        // {
-        //     var rsaKey = new RivestShamirAdleman();
-        //
-        //     TestContext.WriteLine(
-        //         $"privateKey: {rsaKey.PrivateKey}, publicKey: {rsaKey.PublicKey}, commonKey: {rsaKey.CommonKey}");
-        //
-        //     var encrypted = rsaKey.Encrypt("topSecret123");
-        //     TestContext.WriteLine(encrypted);
-        //     Assert.AreEqual("topSecret123", rsaKey.Decrypt(encrypted));
-        //
-        //     //Assert.AreEqual("topSecret123", rsaKey.PrivateDecrypt(rsaKey.PublicEncrypt("topSecret123")));
-        // }
+        
+        [Test]
+        [Ignore("TODO Re-enable test once messages longer than a few digits are able to be successfully encrypted/decrypted")]
+        public void RSATest()
+        {
+            var rsaKey = new RivestShamirAdleman();
+        
+            TestContext.WriteLine(
+                $"privateKey: {rsaKey.PrivateKey}, publicKey: {rsaKey.PublicKey}, commonKey: {rsaKey.CommonKey}");
+        
+            var encrypted = rsaKey.Encrypt("topSecret123");
+            TestContext.WriteLine(encrypted);
+            Assert.AreEqual("topSecret123", rsaKey.Decrypt(encrypted));
+        
+            //Assert.AreEqual("topSecret123", rsaKey.PrivateDecrypt(rsaKey.PublicEncrypt("topSecret123")));
+        }
     }
 }

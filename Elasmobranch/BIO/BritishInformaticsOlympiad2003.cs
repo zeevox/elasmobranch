@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Elasmobranch.BIO
@@ -22,9 +22,9 @@ namespace Elasmobranch.BIO
             var missingNumberPosition = 0;
             foreach (var i in isbn)
             {
-                if (i.Equals("?".ToCharArray()[0]))
+                if (i.Equals("?"[0]))
                     missingNumberPosition = counter;
-                else if (i.Equals("X".ToCharArray()[0]))
+                else if (i.Equals("X"[0]))
                     isbnSum += (10 - counter) * 10;
                 else
                     isbnSum += (10 - counter) * (int) char.GetNumericValue(i);

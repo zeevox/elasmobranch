@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using static Elasmobranch.Exceptions.Week6Exceptions;
+using NUnit.Framework;
+using static Elasmobranch.Exceptions.ExceptionsExample;
 
 namespace Tests.Exceptions
 {

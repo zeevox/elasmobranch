@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using NUnit.Framework;
 using static Elasmobranch.BIO.BritishInformaticsOlympiad2003;
 

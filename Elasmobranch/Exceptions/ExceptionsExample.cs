@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Net;
 using Syroot.Windows.IO;
 
 namespace Elasmobranch.Exceptions
 {
-    public class Week6Exceptions
+    public static class ExceptionsExample
     {
         /// <summary>
         ///     Get the filename from the given URL
