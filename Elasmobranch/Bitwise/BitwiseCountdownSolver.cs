@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Elasmobranch
+namespace Elasmobranch.Bitwise
 {
     public static class BitwiseCountdownSolver
     {
@@ -28,12 +26,12 @@ namespace Elasmobranch
                 foreach (var otherCard in otherCards)
                 foreach (var op in new[] {"+", "-", ">>", "<<", "&", "|", "^"})
                     queue.Enqueue(new Card(otherCard, op, cardSequence));
-
-                if (Math.Abs(cardSequence.Total - target) < 5)
-                    Console.WriteLine(cardSequence.ToString());
+                
+                if (cardSequence.Total - target == 0)
+                    return cardSequence.ToString();
             }
 
-            return cardSequence.ToString();
+            return "No solution found";
         }
 
         private class Card
