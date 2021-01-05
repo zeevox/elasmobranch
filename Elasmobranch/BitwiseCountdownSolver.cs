@@ -9,21 +9,25 @@ namespace Elasmobranch
     {
         public static string Solve(int[] cards, int target)
         {
-            var queue = new Queue<CardSequence>();
-            foreach (var card in cards) queue.Enqueue(new CardSequence(card));
+            var queue = new Queue<Card>();
+            foreach (var card in cards) queue.Enqueue(new Card(card));
 
             var cardSequence = queue.Peek();
             while (cardSequence.Total != target && queue.Count != 0)
             {
                 cardSequence = queue.Dequeue();
 
-                foreach (var otherCard in cards)
+                var otherCards = new List<int>(cards);
+                var previous = cardSequence;
+                do
                 {
-                    if (cards.Count(f => f == otherCard) - cardSequence.Cards.Count(f => f == otherCard) <= 0) continue;
+                    otherCards.Remove(previous.Value);
+                    previous = previous.Previous;
+                } while (previous != null);
 
-                    foreach (var op in new[] {"+", "-", ">>", "<<", "&", "|", "^"})
-                        queue.Enqueue(cardSequence.Copy().AddCard(otherCard, op));
-                }
+                foreach (var otherCard in otherCards)
+                foreach (var op in new[] {"+", "-", ">>", "<<", "&", "|", "^"})
+                    queue.Enqueue(new Card(otherCard, op, cardSequence));
 
                 if (Math.Abs(cardSequence.Total - target) < 5)
                     Console.WriteLine(cardSequence.ToString());
@@ -32,62 +36,37 @@ namespace Elasmobranch
             return cardSequence.ToString();
         }
 
-        private class CardSequence
+        private class Card
         {
-            public readonly List<int> Cards = new List<int>();
-            public readonly List<string> Operators = new List<string>();
-            public int Total;
-
-            public CardSequence(int card) => AddCard(card, "+");
-
-            private CardSequence(List<int> cards, List<string> operators, int total)
+            public readonly int Value;
+            public readonly string Operator;
+            public readonly Card Previous;
+            public readonly int Total;
+            
+            public Card(int value, string op = "+", Card previous = null)
             {
-                Cards = cards;
-                Operators = operators;
-                Total = total;
+                Value = value;
+                Operator = op;
+                Previous = previous;
+                Total = Evaluate(previous?.Total ?? 0, value, op);
             }
 
-            public CardSequence AddCard(int value, string op)
+            public override string ToString() => Previous == null ? Total.ToString() : Previous + $" {Operator} {Value} = {Total}";
+        }
+        
+        private static int Evaluate(int value1, int value2, string op)
+        {
+            return op switch
             {
-                Cards.Add(value);
-                Operators.Add(op);
-                Total = Evaluate(Total, value, op);
-                return this;
-            }
-
-            private static int Evaluate(int value1, int value2, string op)
-            {
-                return op switch
-                {
-                    "+" => value1 + value2,
-                    "-" => value1 - value2,
-                    ">>" => value1 >> value2,
-                    "<<" => value1 << value2,
-                    "&" => value1 & value2,
-                    "|" => value1 | value2,
-                    "^" => value1 ^ value2,
-                    _ => throw new ArgumentException("Invalid operator")
-                };
-            }
-
-            public override string ToString()
-            {
-                var stringBuilder = new StringBuilder();
-
-                stringBuilder.Append(Cards[0]);
-                var total = Cards[0];
-
-                for (var i = 1; i < Cards.Count; i++)
-                {
-                    total = Evaluate(total, Cards[i], Operators[i]);
-                    stringBuilder.Append($" {Operators[i]} {Cards[i]} = {total}");
-                }
-
-                return stringBuilder.ToString();
-            }
-
-            public CardSequence Copy() => 
-                new CardSequence(new List<int>(Cards), new List<string>(Operators), Total);
+                "+" => value1 + value2,
+                "-" => value1 - value2,
+                ">>" => value1 >> value2,
+                "<<" => value1 << value2,
+                "&" => value1 & value2,
+                "|" => value1 | value2,
+                "^" => value1 ^ value2,
+                _ => throw new ArgumentException("Invalid operator")
+            };
         }
     }
 }
