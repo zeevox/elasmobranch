@@ -5,7 +5,7 @@ namespace Paint.Drawing
 {
     public class Path : BaseDrawable
     {
-        private List<PointF> _points = new();
+        private readonly List<PointF> _points = new();
 
         public Path() : this(new Pen(Colors.Black))
         {
@@ -18,9 +18,12 @@ namespace Paint.Drawing
             Pen.LineJoin = PenLineJoin.Round;
         }
 
-        public Pen Pen { get; private set; }
+        public Pen Pen { get; }
 
-        public void AddPoint(PointF point) => _points.Add(point);
+        public void AddPoint(PointF point)
+        {
+            _points.Add(point);
+        }
 
         public override void Draw(Graphics g)
         {

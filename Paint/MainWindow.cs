@@ -94,12 +94,32 @@ namespace Paint
             var menu = new MenuBar();
             ParentWindow.Menu = menu;
 
-            menu.Items.GetSubmenu("&File").Items.Add(new ButtonMenuItem {Text = "Quit"});
+            menu.Items.GetSubmenu("&File").Items.Add(new ButtonMenuItem
+            {
+                Text = "Quit", Shortcut = Keys.Control | Keys.Q,
+                Command = new Command(OnMenuItemClicked) {ID = "action_quit"}
+            });
+            menu.Items.GetSubmenu("&Edit").Items.Add(new ButtonMenuItem
+            {
+                Text = "Clear", Shortcut = Keys.Alt | Keys.C,
+                Command = new Command(OnMenuItemClicked) {ID = "action_clear_canvas"}
+            });
+        }
 
-            Command clearCommand = new();
-            clearCommand.Executed += delegate { _canvas.Clear(); };
-
-            menu.Items.GetSubmenu("&Edit").Items.Add(new ButtonMenuItem {Text = "Clear", Command = clearCommand});
+        private void OnMenuItemClicked(object? sender, EventArgs args)
+        {
+            switch (((Command) sender).ID)
+            {
+                case "action_clear_canvas":
+                    _canvas.Clear();
+                    break;
+                case "action_quit":
+                    Close();
+                    break;
+                default:
+                    Console.Error.WriteLine($"Menu item with {((Command) sender).ID} not handled");
+                    break;
+            }
         }
 
         protected override void OnMouseDown(MouseEventArgs e)

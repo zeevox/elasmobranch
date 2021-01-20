@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Eto.Forms;
 using Eto.Drawing;
+using Eto.Forms;
 using Paint.Drawing;
 
 namespace Paint
@@ -10,6 +8,19 @@ namespace Paint
     public class Canvas : Scrollable
     {
         private readonly PixelLayout _layout = new();
+
+        public readonly Drawable Control = new(true)
+        {
+            Size = new Size(640, 480),
+            BackgroundColor = Colors.White
+        };
+
+        public Canvas()
+        {
+            Control.Paint += (_, pe) => DrawAll(pe.Graphics);
+            _layout.Add(Control, 0, 0);
+            Content = _layout;
+        }
 
         private List<BaseDrawable> Drawn { get; set; } = new();
 
@@ -21,23 +32,21 @@ namespace Paint
             set => Control.BackgroundColor = value;
         }
 
-        public readonly Drawable Control = new(true) {
-            Size = new Size(640, 480),
-            BackgroundColor = Colors.White,
-        };
-        public Canvas()
+        public void Clear()
         {
-            Control.Paint += (_, pe) => DrawAll(pe.Graphics);
-            _layout.Add(Control, 0, 0);
-            Content = _layout;
+            Drawn = new List<BaseDrawable>();
+            Refresh();
         }
 
-        public void Clear() =>
-            Drawn = new List<BaseDrawable>();
+        public void Refresh()
+        {
+            Control.Invalidate();
+        }
 
-        public void Refresh() => Control.Invalidate();
-
-        public void Draw(BaseDrawable drawable) => Drawn.Add(drawable);
+        public void Draw(BaseDrawable drawable)
+        {
+            Drawn.Add(drawable);
+        }
 
         private void DrawAll(Graphics graphics)
         {

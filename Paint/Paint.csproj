@@ -18,4 +18,8 @@
       <PackageReference Include="Eto.Platform.Gtk" Version="2.5.10" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Resources" />
+    </ItemGroup>
+
 </Project>
