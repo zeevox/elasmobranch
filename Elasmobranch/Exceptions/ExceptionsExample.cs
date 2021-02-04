@@ -1,6 +1,6 @@
 using System;
+using System.IO;
 using System.Net;
-using Syroot.Windows.IO;
 
 namespace Elasmobranch.Exceptions
 {
@@ -27,7 +27,7 @@ namespace Elasmobranch.Exceptions
             try
             {
                 using var client = new WebClient();
-                client.DownloadFile(uri, new KnownFolder(KnownFolderType.Downloads).Path + Basename(uri));
+                client.DownloadFile(uri, Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + Basename(uri));
             }
             catch (WebException e)
             {

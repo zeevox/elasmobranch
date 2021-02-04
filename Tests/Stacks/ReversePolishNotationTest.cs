@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace Tests.Stacks
 {
+    [TestFixture]
     public class ReversePolishNotationTest
     {
         [Test]

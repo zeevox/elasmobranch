@@ -4,6 +4,7 @@ using static Elasmobranch.BIO.BritishInformaticsOlympiad2003;
 
 namespace Tests.BIO
 {
+    [TestFixture]
     public class BritishInformaticsOlympiad2003
     {
         [Test]

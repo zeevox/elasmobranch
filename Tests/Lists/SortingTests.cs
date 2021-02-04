@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Elasmobranch.Sorting;
+using Elasmobranch.Lists;
 using NUnit.Framework;
 
-namespace Tests.Sorting
+namespace Tests.Lists
 {
+    [TestFixture]
     public class SortingTests
     {
         /// <summary>

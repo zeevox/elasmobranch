@@ -5,6 +5,7 @@ using static Elasmobranch.TimedCodingTasks.Week7BlockTest;
 
 namespace Tests.TimedCodingTasks
 {
+    [TestFixture]
     public class Week7BlockTestTests
     {
         [Test]

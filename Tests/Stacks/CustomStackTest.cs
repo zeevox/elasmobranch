@@ -4,6 +4,7 @@ using NUnit.Framework;
 
 namespace Tests.Stacks
 {
+    [TestFixture]
     public class CustomStackTest
     {
         [Test]

@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace Tests.Encryption
 {
+    [TestFixture]
     public class CaesarCipherTests
     {
         [Test]

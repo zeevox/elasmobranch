@@ -6,6 +6,7 @@ using NUnit.Framework;
 
 namespace Tests.Bitwise
 {
+    [TestFixture]
     public class BitwiseCountdownSolverTests
     {
         [Test]

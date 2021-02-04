@@ -3,6 +3,7 @@ using static Elasmobranch.Queues.QueueExercises;
 
 namespace Tests.Queues
 {
+    [TestFixture]
     public class QueueExercisesTests
     {
         [Test]

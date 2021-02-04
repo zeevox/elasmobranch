@@ -3,6 +3,7 @@ using static Elasmobranch.Exceptions.ExceptionsExample;
 
 namespace Tests.Exceptions
 {
+    [TestFixture]
     public class ExceptionHandlingTest
     {
         [Test]

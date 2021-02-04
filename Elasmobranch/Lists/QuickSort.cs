@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Elasmobranch.Sorting
+namespace Elasmobranch.Lists
 {
     public static class QuickSort
     {

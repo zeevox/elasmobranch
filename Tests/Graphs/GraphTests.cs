@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace Tests.Graphs
 {
+    [TestFixture]
     public class GraphTests
     {
         [Test]

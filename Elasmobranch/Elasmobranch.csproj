@@ -5,8 +5,4 @@
         <TargetFramework>netcoreapp5.0</TargetFramework>
     </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Syroot.Windows.IO.KnownFolders" Version="1.2.3" />
-    </ItemGroup>
-
 </Project>

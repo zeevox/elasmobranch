@@ -3,6 +3,7 @@ using static Elasmobranch.Basics.Selection;
 
 namespace Tests.Basics
 {
+    [TestFixture]
     public class SelectionTests
     {
         [Test]

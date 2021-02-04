@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace Tests.TimedCodingTasks
 {
+    [TestFixture]
     public class Week6TimedCodingTaskTest
     {
         [TestCase(210, "01001011", "11010010")]

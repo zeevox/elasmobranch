@@ -7,6 +7,7 @@ using NUnit.Framework;
 
 namespace Tests.Encryption
 {
+    [TestFixture]
     public class RSATests
     {
         [Test]
