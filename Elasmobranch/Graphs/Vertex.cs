@@ -13,7 +13,7 @@ namespace Elasmobranch.Graphs
         /// <summary>
         ///     A key that uniquely identifies this vertex, in other terms, this is its value
         /// </summary>
-        public readonly string Key;
+        public string Key { get; }
 
         /// <summary>
         ///     Initialise a new vertex

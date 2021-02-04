@@ -22,9 +22,9 @@ namespace Elasmobranch.BIO
             var missingNumberPosition = 0;
             foreach (var i in isbn)
             {
-                if (i.Equals("?"[0]))
+                if (i.Equals('?'))
                     missingNumberPosition = counter;
-                else if (i.Equals("X"[0]))
+                else if (i.Equals('X'))
                     isbnSum += (10 - counter) * 10;
                 else
                     isbnSum += (10 - counter) * (int) char.GetNumericValue(i);
@@ -51,7 +51,7 @@ namespace Elasmobranch.BIO
             var isbnSum = 0;
             foreach (var i in isbn)
             {
-                if (i.Equals("X".ToCharArray()[0]))
+                if (i.Equals('X'))
                     isbnSum += (10 - counter) * 10;
                 else
                     isbnSum += (10 - counter) * (int) char.GetNumericValue(i);

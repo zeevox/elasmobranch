@@ -135,7 +135,7 @@ namespace Elasmobranch.Lists
             return false;
         }
 
-        public bool IsReadOnly { get; set; } = false;
+        public bool IsReadOnly { get; set; }
 
         public IEnumerator<T> GetEnumerator()
         {

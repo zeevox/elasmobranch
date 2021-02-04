@@ -137,8 +137,6 @@ namespace Tests.Encryption
             var encrypted = rsaKey.Encrypt("topSecret123");
             TestContext.WriteLine(encrypted);
             Assert.AreEqual("topSecret123", rsaKey.Decrypt(encrypted));
-        
-            //Assert.AreEqual("topSecret123", rsaKey.PrivateDecrypt(rsaKey.PublicEncrypt("topSecret123")));
         }
     }
 }

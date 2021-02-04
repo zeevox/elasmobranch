@@ -38,9 +38,9 @@ namespace Elasmobranch.Graphs
         ///     The vertex that is added is not connected to any other vertices by default
         /// </remarks>
         /// <param name="vertex"></param>
-        public void Add(Vertex vertex)
+        public void Add(Vertex item)
         {
-            if (vertex != null) _vertices.Add(vertex.Key, vertex);
+            if (item != null) _vertices.Add(item.Key, item);
         }
 
         /// <summary>

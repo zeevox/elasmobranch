@@ -8,7 +8,7 @@ namespace Elasmobranch.Basics
 {
     public class Introduction
     {
-        public Introduction()
+        protected Introduction()
         {
             IntroduceYourself();
 

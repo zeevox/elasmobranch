@@ -3,7 +3,6 @@ using Eto;
 using Eto.Drawing;
 using Eto.Forms;
 using Paint.Drawing;
-using Paint.UI;
 
 namespace Paint
 {
@@ -86,11 +85,6 @@ namespace Paint
             {
                 Text = "Color Picker",
                 ToolTip = "Select a color to use for the brush"
-            });
-            
-            ToolBar.Items.Add(new UI.ColorPickerToolItem()
-            {
-                Text = "Color Picker"
             });
         }
 

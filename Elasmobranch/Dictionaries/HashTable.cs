@@ -16,7 +16,7 @@ namespace Elasmobranch.Dictionaries
         public HashTable(int length = 100)
         {
             if (typeof(K).GetMethod("ToString")?.DeclaringType != typeof(object))
-                throw new Exception(
+                throw new NotSupportedException(
                     "Cannot create a HashTable for an object that does not implement `ToString()` method.");
             
             _data = new KeyValuePair[length];
