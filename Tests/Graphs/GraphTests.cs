@@ -1,54 +1,51 @@
-using Elasmobranch.Graphs;
+using System;
+using System.Linq;
+using Elasmobranch.Graphs.common;
+using Elasmobranch.Graphs.graph;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 
 namespace Tests.Graphs
 {
     [TestFixture]
     public class GraphTests
     {
-        [Test]
-        public void DenseCyclicGraphTest()
+        [SetUp]
+        public void SetUp()
         {
-            var graph = new Graph();
-            int[][] edges =
-            {
-                new[] {1, 2},
-                new[] {1, 3},
-                new[] {1, 4},
-                new[] {2, 4},
-                new[] {3, 4},
-                new[] {2, 5},
-                new[] {4, 5}
-            };
-            foreach (var edge in edges)
-                graph.AddEdge(edge[0].ToString(), edge[1].ToString());
+            _graph = new Graph<int>(Vertices, AdjacencyMatrix);
+        }
 
-            Assert.AreEqual(5, graph.Count);
+        private Graph<int> _graph;
 
-            Assert.IsTrue(graph.IsConnected());
-            Assert.AreEqual(graph.DiscoverVertices(Graph.SearchAlgorithm.BreadthFirst),
-                graph.DiscoverVertices(Graph.SearchAlgorithm.DepthFirst));
+        private const int Infinity = int.MaxValue;
+        private static readonly int[] Vertices = {1, 2, 3, 4, 5};
 
-            for (var i = 1; i <= 5; i++)
-            {
-                Assert.IsTrue(graph.Contains(i.ToString()));
-                Assert.IsTrue(graph.Contains(graph.GetVertex(i.ToString())));
-            }
+        private static readonly int[][] AdjacencyMatrix =
+        {
+            new[] {0, 5, Infinity, 9, 1},
+            new[] {5, 0, 2, Infinity, Infinity},
+            new[] {Infinity, 2, 0, 7, Infinity},
+            new[] {9, Infinity, 7, 0, 2},
+            new[] {1, Infinity, Infinity, 2, 0}
+        };
 
-            for (var i = 6; i <= 10; i++)
-            {
-                Assert.IsFalse(graph.Contains(i.ToString()));
-                Assert.IsFalse(graph.Contains(graph.GetVertex(i.ToString())));
-            }
-            
-            Assert.AreEqual(int.MaxValue, graph.GetVertex(1.ToString()).DistanceTo(graph.GetVertex(5.ToString())));
-
-            Assert.IsFalse(graph.Remove(graph.GetVertex(6.ToString())));
-            Assert.IsTrue(graph.Remove(graph.GetVertex(5.ToString())));
-            Assert.AreEqual(4, graph.Count);
-            Assert.IsFalse(graph.Contains(5.ToString()));
-            Assert.IsNull(graph.GetVertex(5.ToString()));
-            Assert.AreEqual(int.MaxValue, graph.GetVertex(4.ToString()).DistanceTo(graph.GetVertex(5.ToString())));
+        [Test]
+        public void GraphTest()
+        {
+            // these two should be the same, no. of nodes in graph
+            Assert.AreEqual(5, _graph.Count);
+            Assert.AreEqual(5, _graph.Size);
+            // check that all nodes have been connected
+            Assert.AreEqual(true, _graph.IsConnected());
+            // check that GetNeighbours is returning expected vertices
+            Assert.That(_graph[4].GetNeighbours().Select(f => f.Value), 
+                Is.EquivalentTo(new[] {1,3,5}));
+            // check that all vertices are discovered starting from any node using any search algorithm
+            foreach (var vertex in Vertices)
+            foreach (var algorithm in (SearchAlgorithm[]) Enum.GetValues(typeof(SearchAlgorithm)))
+                Assert.That(_graph.DiscoverVertices(_graph[vertex], algorithm).ToArray()
+                    .Select(f => f.Value).ToArray(), Is.EquivalentTo(Vertices));
         }
     }
 }
